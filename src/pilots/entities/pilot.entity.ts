@@ -1,6 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { Car } from 'src/cars/entities/car.entity';
 
 @Schema()
 export class Pilot extends Document {

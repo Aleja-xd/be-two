@@ -1,9 +1,16 @@
 import { Module } from '@nestjs/common';
-import { SeedController } from './seed.controller';
+import { MongooseModule } from '@nestjs/mongoose';
 import { SeedService } from './seed.service';
+import { SeedController } from './seed.controller';
+import { Car, CarSchema } from '../cars/entities/car.entity';
 
 @Module({
+  imports: [
+    MongooseModule.forFeature([
+      { name: Car.name, schema: CarSchema },
+    ]),
+  ],
   controllers: [SeedController],
-  providers: [SeedService]
+  providers: [SeedService],
 })
 export class SeedModule {}

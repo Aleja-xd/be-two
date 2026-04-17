@@ -1,4 +1,4 @@
-import { IsNumber, IsPositive, IsString } from 'class-validator';
+import { IsBoolean, IsNumber, IsPositive, IsString } from 'class-validator';
 
 export class CreatePilotoDto {
   @IsString()
@@ -11,7 +11,7 @@ export class CreatePilotoDto {
   @IsPositive()
   numero: number;
 
-  @IsString()
+  @IsBoolean()
   activo: boolean;
   
   @IsNumber()
