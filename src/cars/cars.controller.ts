@@ -11,19 +11,28 @@ import { ParseMongoIdPipe } from '../common/pipes/parse-mongo-id.pipe';
 import { CarsService } from './cars.service';
 import { CreateCarDto } from './dto/create-car.dto';
 import { UpdateCarDto } from './dto/update-car.dto';
+import { Query } from '@nestjs/common';
 
 @Controller('cars')
 export class CarsController {
   constructor(private readonly carsService: CarsService) {}
 
   @Get()
-  findAll() {
-    return this.carsService.findAll();
+  findAll(
+    @Query('limit') limit: string = '10',
+    @Query('skip') skip: string = '0',
+  ) {
+    return this.carsService.findAll(+limit, +skip);
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.carsService.findOne(id);
+  }
+
+  @Get(':search')
+  search(@Query('q') q: string) {
+    return this.carsService.search(q);
   }
 
   @Post()
